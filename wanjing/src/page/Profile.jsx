@@ -166,6 +166,11 @@ export default function Profile() {
                         })}
                     </section>
                 )}
+                {!loading && posts.length <= 0 && (
+                    <p className="text-center my-4 text-white/50 font-semibold">
+                        No Post yet
+                    </p>
+                )}
             </div>
             {loading && <Loading text="Loading" bg="base" />}
             {error != null && <AlertDanger errors={error} />}

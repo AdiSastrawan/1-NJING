@@ -30,6 +30,7 @@ export default function usePaginate(pageNumber, trending, setPageNumber) {
                     );
                     setLoading(false);
                 } catch (error) {
+                    console.log(error);
                     setError(error);
                 }
             } else {
@@ -48,6 +49,7 @@ export default function usePaginate(pageNumber, trending, setPageNumber) {
                     );
                     setLoading(false);
                 } catch (error) {
+                    console.log(error);
                     setError(error);
                 }
             }

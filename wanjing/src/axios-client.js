@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosClient = axios.create({
-    baseURL: "http://localhost:8000/api/",
+    baseURL: "https://api.1-njing.my.id/api/",
 });
 
 axiosClient.interceptors.request.use((config) => {

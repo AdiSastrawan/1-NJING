@@ -15,11 +15,11 @@ export default function PopUp({ func, setConfirm, confirm, confirmation }) {
             ></div>
 
             <div
-                className={`fixed top-0 left-0 right-0  h-modal ${
+                className={`fixed inset-0 overflow-y-hidden h-modal ${
                     !confirm ? "opacity-0 -z-50" : "opacity-100 z-50"
                 } md:h-full md:inset-0 p-4 transition-all  overflow-x-hidden overflow-y-auto `}
             >
-                <div className="relative w-full translate-x-3/4 translate-y-1/2 h-full max-w-md md:h-auto ">
+                <div className="relative w-full md:translate-x-3/4 overflow-y-hidden md:translate-y-1/2 translate-y-1/2  h-fit  max-w-md md:h-auto ">
                     <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                         <button
                             onClick={() => {
