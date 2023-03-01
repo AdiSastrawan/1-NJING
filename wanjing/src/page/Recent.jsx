@@ -2,6 +2,7 @@ import { entries } from "lodash";
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { axiosClient } from "../axios-client";
+import { AlertDanger } from "../components/Alert/Alert";
 import Loading from "../components/Loading/Loading";
 import NavTopBar from "../components/Navigation/components/NavTopBar";
 import Post from "../components/Post/Post";
