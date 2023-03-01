@@ -7,7 +7,7 @@ export default function NavTopBar({}) {
     return (
         <div className="flex  justify-around   bg-base w-full">
             <NavLink
-                to={`/`}
+                to="/"
                 act
                 className={({ isActive }) => ` 
                     ${isActive && "text-white font-bold border-b-2"} 
@@ -17,7 +17,7 @@ export default function NavTopBar({}) {
                 <h3>Recent</h3>
             </NavLink>
             <NavLink
-                to={`/trending`}
+                to="/trending"
                 className={({ isActive }) =>
                     ` ${
                         isActive && "text-white font-bold border-b-2"

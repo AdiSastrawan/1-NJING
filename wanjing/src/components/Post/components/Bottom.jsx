@@ -1,4 +1,3 @@
-import { BsArrowDownShort, BsArrowUpShort } from "react-icons/bs";
 import { BiCommentDetail, BiDownvote, BiUpvote } from "react-icons/bi";
 import { useContext, useEffect, useRef, useState } from "react";
 import { ImArrowDown, ImArrowUp } from "react-icons/im";

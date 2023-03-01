@@ -5,6 +5,7 @@ import profile from "../../../assets/user.png";
 import { axiosClient } from "../../../axios-client";
 import { UserContext } from "../../../context/UserAuth";
 import useTimeFormater from "../../../costumhooks/useTimeFormater";
+import PopUp from "../../Alert/PopUp";
 
 async function deletePost(id, setPageNumber, setLoading, setPosts) {
     try {
@@ -21,6 +22,7 @@ async function deletePost(id, setPageNumber, setLoading, setPosts) {
 
 export default function Top(props) {
     const { id } = useParams();
+    const [confirm, setConfirm] = useState(false);
     const [loading, setLoading] = useState(false);
     const { url, user } = useContext(UserContext);
     const date = useTimeFormater(props.data.created_at).date;
@@ -41,9 +43,17 @@ export default function Top(props) {
     }
     return (
         <div className="flex flex-col px-1 py-1 relative">
+            <PopUp
+                confirm={confirm}
+                setConfirm={setConfirm}
+                func={deleteHandler}
+                confirmation="Are you sure you want to delete this post?"
+            />
             {user && id == user.id && (
                 <button
-                    onClick={deleteHandler}
+                    onClick={() => {
+                        setConfirm(true);
+                    }}
                     className="absolute right-0 bg-red-500 px-2 py-1 rounded-md mr-2"
                 >
                     <BiTrash size="22px" />

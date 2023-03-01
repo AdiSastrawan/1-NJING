@@ -48,9 +48,9 @@ export default function Navbar({ payLoad, setLogin }) {
                                 onClick={() => {
                                     setLogin(true);
                                 }}
-                                className=""
+                                className="px-4 text-lg rounded-lg outline-white font-medium  border-white outline-1 border transition-colors hover:bg-white  hover:text-prime"
                             >
-                                Login
+                                Sign in
                             </button>
                         </>
                     )}

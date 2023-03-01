@@ -13,6 +13,7 @@ import profile from "../../assets/user.png";
 import { axiosClient } from "../../axios-client";
 import { UserContext } from "../../context/UserAuth";
 import useTimeFormater from "../../costumhooks/useTimeFormater";
+import PopUp from "../Alert/PopUp";
 import CommentForm from "./CommentForm";
 async function updateVote(payload, id) {
     try {
@@ -35,6 +36,7 @@ export default function Comment({
     const { user, url, token } = useContext(UserContext);
     const [upvote, setUpVote] = useState(comment.upvote);
     const { id } = useParams();
+    const [confirm, setConfirm] = useState(false);
     const [replydrop, setReplydrop] = useState(false);
     const [isreplying, setIsReplying] = useState(false);
     const [downvote, setDownVote] = useState(comment.downvote);
@@ -114,6 +116,9 @@ export default function Comment({
             return !prev;
         });
     }
+    function clickHandler(id) {
+        deleteHandler(id);
+    }
     return (
         <div
             className={`flex w-full  justify-start px-1 ${
@@ -165,11 +170,21 @@ export default function Comment({
                     )}
                     {user !== null &&
                         (user.id === comment.user_id ? (
-                            <button
-                                onClick={deleteHandler.bind(this, comment.id)}
-                            >
-                                <BiTrash size="20px" />
-                            </button>
+                            <>
+                                <PopUp
+                                    confirm={confirm}
+                                    setConfirm={setConfirm}
+                                    confirmation="Are you sure you want to delete this comment?"
+                                    func={clickHandler.bind(this, comment.id)}
+                                />
+                                <button
+                                    onClick={() => {
+                                        setConfirm(true);
+                                    }}
+                                >
+                                    <BiTrash size="20px" />
+                                </button>
+                            </>
                         ) : (
                             ""
                         ))}

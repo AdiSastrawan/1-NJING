@@ -182,7 +182,7 @@ export default function DefaultLayout() {
                                             className="flex items-center text-lg  text-white/80 space-x-1 font-normal px-4 "
                                         >
                                             <BiLogIn size="22px" />
-                                            <p>Login</p>
+                                            <p>Sign in</p>
                                         </button>
                                     </li>
                                 )}

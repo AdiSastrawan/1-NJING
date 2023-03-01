@@ -5,7 +5,6 @@ import { UserContext } from "../context/UserAuth";
 
 export default function usePaginate(pageNumber, trending, setPageNumber) {
     const [posts, setPosts] = useState([]);
-    console.log(trending);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [hasMore, setHasMore] = useState(false);
