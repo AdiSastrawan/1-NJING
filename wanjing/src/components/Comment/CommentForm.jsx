@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import { axiosClient } from "../../axios-client";
 import { UserContext } from "../../context/UserAuth";
-
+import profile from "../../assets/user.png";
 async function sendComment(id, payload, setLoading) {
     console.log(payload, id);
     try {

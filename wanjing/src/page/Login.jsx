@@ -14,7 +14,6 @@ async function loginUser(payload, setToken, setError, setLoading, setLogin) {
         setLoading(false);
 
         setLogin(false);
-        console.log("try");
         setError(null);
         setToken(response.data.data.token);
     } catch (error) {
@@ -33,7 +32,6 @@ async function loginUserPage(
         const response = await axiosClient.post("v1/login", payload);
         setLoading(false);
 
-        console.log("try");
         navigate("/");
         setError(null);
         setToken(response.data.data.token);
@@ -51,7 +49,6 @@ export default function Login({ login, setLogin }) {
     const { setToken, token } = useContext(UserContext);
 
     function submitHandler(e) {
-        console.log(password.current.value, email.current.value);
         e.preventDefault();
         const payload = {
             email: email.current.value,
@@ -163,7 +160,6 @@ export function LoginPage() {
     const { setToken, token } = useContext(UserContext);
 
     function submitHandler(e) {
-        console.log(password.current.value, email.current.value);
         e.preventDefault();
         const payload = {
             email: email.current.value,

@@ -26,7 +26,7 @@ export default function Bottom(props) {
     );
     const [upvote, setUpVote] = useState(parseInt(props.data.upvote));
     const [downvote, setDownVote] = useState(parseInt(props.data.downvote));
-    console.log(props.data.id, upvote, isUpVote);
+
     useEffect(() => {
         const payload = {
             upvote: upvote,
@@ -61,7 +61,6 @@ export default function Bottom(props) {
         });
     }
     function downVoteHandler(e) {
-        console.log("test");
         if (!isDownVote) {
             setDownVote((prev) => {
                 return prev + 1;
