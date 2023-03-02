@@ -9,7 +9,7 @@ export const UserContext = createContext({
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, _setToken] = useState(localStorage.getItem("token"));
-    const [url, setUrl] = useState("http://localhost:8000/");
+    const [url, setUrl] = useState("https://api.1-njing.my.id/");
 
     function setToken(token) {
         _setToken(token);

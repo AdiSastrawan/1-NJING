@@ -9,6 +9,7 @@ import Video from "./components/Video";
 
 export default function Post(props) {
     const { id } = useParams();
+    const { url } = useContext(UserContext);
     const [mute, setMute] = useState(true);
     function muteHandler() {
         setMute((prev) => {
@@ -38,7 +39,7 @@ export default function Post(props) {
                         <Video
                             loop={true}
                             mute={mute}
-                            src={"http://localhost:8000/" + props.data.file}
+                            src={url + props.data.file}
                             format={props.data.format}
                         />
                     </>
@@ -54,7 +55,7 @@ export default function Post(props) {
                         <img
                             className="object-contain"
                             loading="lazy"
-                            src={"http://localhost:8000/" + props.data.file}
+                            src={url + props.data.file}
                             alt="post"
                         />
                     </Link>
@@ -62,7 +63,7 @@ export default function Post(props) {
                     <div className="w-full flex justify-center">
                         <img
                             className="object-contain"
-                            src={"http://localhost:8000/" + props.data.file}
+                            src={url + props.data.file}
                             alt="post"
                         />
                     </div>

@@ -14,89 +14,74 @@ async function vote(payload, id) {
 export default function Bottom(props) {
     const { token, url } = useContext(UserContext);
 
-    let votedUp = 0;
-    let votedDown = 0;
-    const [isUpVote, setIsUpVote] = useState(0);
-    const [isDownVote, setIsDownVote] = useState(0);
+    const [isUpVote, setIsUpVote] = useState(
+        props.data.voted && props.data.voted.length > 0
+            ? parseInt(props.data.voted[0].votedup)
+            : false
+    );
+    const [isDownVote, setIsDownVote] = useState(
+        props.data.voted && props.data.voted.length > 0
+            ? parseInt(props.data.voted[0].voteddown)
+            : false
+    );
+    const [upvote, setUpVote] = useState(parseInt(props.data.upvote));
+    const [downvote, setDownVote] = useState(parseInt(props.data.downvote));
+    console.log(props.data.id, upvote, isUpVote);
     useEffect(() => {
-        if (token == null) {
-            setIsDownVote(0);
-            setIsUpVote(0);
-        } else {
-            if (props.data.voted) {
-                setIsUpVote(
-                    props.data.voted[0] ? props.data.voted[0].votedup : 0
-                );
+        const payload = {
+            upvote: upvote,
+            downvote: downvote,
+            isup: isUpVote,
+            isdown: isDownVote,
+            _method: "PUT",
+        };
+        vote(payload, props.data.id);
+    }, [isDownVote, isUpVote]);
 
-                setIsDownVote(
-                    props.data.voted[0] ? props.data.voted[0].voteddown : 0
-                );
+    function upVoteHandler(e) {
+        if (!isUpVote) {
+            setUpVote((prev) => {
+                return prev + 1;
+            });
+            if (isDownVote) {
+                setIsDownVote((prev) => {
+                    return !prev;
+                });
+                setDownVote((prev) => {
+                    return prev - 1;
+                });
             }
-        }
-    }, [token]);
-
-    const [upvote, setUpVote] = useState(props.data.upvote);
-    const [downvote, setDownVote] = useState(props.data.downvote);
-
-    function upVoteHandler() {
-        let votes = upvote;
-        let votedeny = downvote;
-
-        if (isUpVote) {
-            votedUp = 0;
-            votes = upvote - 1;
-            setIsUpVote(votedUp);
-            setUpVote(votes);
         } else {
-            votedUp = 1;
-            votes = upvote + 1;
-            setIsUpVote(votedUp);
-            setUpVote(votes);
+            setUpVote((prev) => {
+                return prev - 1;
+            });
         }
-
-        if (isDownVote == true) {
-            votedDown = 0;
-            votedeny = downvote - 1;
-            setDownVote(votedeny);
-        }
-        setIsDownVote(0);
-        const payload = {
-            upvote: votes,
-            downvote: votedeny,
-            isup: votedUp,
-            isdown: votedDown,
-        };
-
-        vote(payload, props.data.id);
+        setIsUpVote((prev) => {
+            return !prev;
+        });
     }
-    function downVoteHandler() {
-        let votes = downvote + 1;
-        let votedeny = upvote;
-        if (isDownVote) {
-            votedDown = 0;
-            votes = downvote - 1;
-            setIsDownVote(votedDown);
-            setDownVote(votes);
+    function downVoteHandler(e) {
+        console.log("test");
+        if (!isDownVote) {
+            setDownVote((prev) => {
+                return prev + 1;
+            });
+            if (isUpVote) {
+                setIsUpVote((prev) => {
+                    return !prev;
+                });
+                setUpVote((prev) => {
+                    return prev - 1;
+                });
+            }
         } else {
-            votedDown = 1;
-            votes = downvote + 1;
-            setIsDownVote(votedDown);
-            setDownVote(votes);
+            setDownVote((prev) => {
+                return prev - 1;
+            });
         }
-
-        if (isUpVote == true) {
-            votedUp = 0;
-            votedeny = upvote - 1;
-            setUpVote(votedeny);
-        }
-        setIsUpVote(0);
-        const payload = {
-            upvote: votedeny,
-            downvote: votes,
-            isup: votedUp,
-            isdown: votedDown,
-        };
-        vote(payload, props.data.id);
+        setIsDownVote((prev) => {
+            return !prev;
+        });
     }
     return (
         <div className="flex justify-around md:justify-between w-full text-xl py-2">
@@ -104,7 +89,7 @@ export default function Bottom(props) {
                 <button
                     onClick={token && upVoteHandler}
                     className={`border flex border-white ${
-                        isUpVote == 1
+                        isUpVote
                             ? "text-blue-600/80 bg-white/80"
                             : "text-white/80"
                     } rounded-lg py-1   px-2 `}

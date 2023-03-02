@@ -38,6 +38,7 @@ export default function Recent() {
             <div className="bg-base h-full">
                 <NavTopBar />
                 {posts.map((post, i) => {
+                    console.log("ini post id " + post.id, post.upvote);
                     return (
                         <Post
                             key={i}

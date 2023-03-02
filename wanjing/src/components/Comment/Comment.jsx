@@ -34,20 +34,20 @@ export default function Comment({
     setLoading,
 }) {
     const { user, url, token } = useContext(UserContext);
-    const [upvote, setUpVote] = useState(comment.upvote);
+    const [upvote, setUpVote] = useState(parseInt(comment.upvote));
     const { id } = useParams();
     const [confirm, setConfirm] = useState(false);
     const [replydrop, setReplydrop] = useState(false);
     const [isreplying, setIsReplying] = useState(false);
-    const [downvote, setDownVote] = useState(comment.downvote);
+    const [downvote, setDownVote] = useState(parseInt(comment.downvote));
     const [is_up, setIsUp] = useState(
         comment.voted && comment.voted.length > 0
-            ? comment.voted[0].votedup
+            ? parseInt(comment.voted[0].votedup)
             : false
     );
     const [is_down, setIsDown] = useState(
         comment.voted && comment.voted.length > 0
-            ? comment.voted[0].voteddown
+            ? parseInt(comment.voted[0].voteddown)
             : false
     );
 
@@ -169,7 +169,7 @@ export default function Comment({
                         <button onClick={isreplyArea}>Reply</button>
                     )}
                     {user !== null &&
-                        (user.id === comment.user_id ? (
+                        (user.id == comment.user_id ? (
                             <>
                                 <PopUp
                                     confirm={confirm}

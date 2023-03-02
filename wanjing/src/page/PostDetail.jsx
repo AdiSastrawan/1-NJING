@@ -86,7 +86,7 @@ export default function PostDetail() {
                     )}
                     {loading && <Loading />}
                     <ul className=" rounded-lg mx-4 py-2 px-1 ">
-                        {comments && comments.length <= 0 && (
+                        {!loading && comments && comments.length <= 0 && (
                             <h1 className="text-center font-semibold text-xl">
                                 No comment yet
                             </h1>
