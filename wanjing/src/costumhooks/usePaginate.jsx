@@ -3,7 +3,7 @@ import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { axiosClient } from "../axios-client";
 import { UserContext } from "../context/UserAuth";
 
-export default function usePaginate(pageNumber, trending, setPageNumber) {
+export default function usePaginate(pageNumber, trending, ) {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
